@@ -10,14 +10,20 @@ const units = {
   temperature: ['celsius', 'fahrenheit', 'kelvin'],
 };
 
-// Populate unit dropdowns based on category
-categorySelect.addEventListener('change', () => {
+//Function to populate unit dropdowns based on category
+function populateUnitDropdowns() {
   const category = categorySelect.value;
   fromUnitSelect.innerHTML = units[category].map(unit => `<option value="${unit}">${unit}</option>`).join('');
   toUnitSelect.innerHTML = units[category].map(unit => `<option value="${unit}">${unit}</option>`).join('');
-});
+}
 
-// Handle form submission
+//Populating dropdowns on page load
+populateUnitDropdowns();
+
+//Updating dropdowns when category changes
+categorySelect.addEventListener('change', populateUnitDropdowns);
+
+//Handling form submission
 converterForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   const value = document.getElementById('value').value;
@@ -33,8 +39,8 @@ converterForm.addEventListener('submit', async (e) => {
 
   const data = await response.json();
   if (data.result) {
-    resultDiv.innerText = `Result: ${data.result}`;
+    const roundedResult = parseFloat(data.result).toFixed(2); //Rounded to 2 decimal places
+    resultDiv.innerText = `Result: ${roundedResult}`;
   } else {
-    resultDiv.innerText = 'Error: Invalid conversion';
-  }
-});
+    resultDiv.innerText = 'Error: Invalid conversion. Try again!';
+  }});

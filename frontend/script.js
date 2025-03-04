@@ -42,5 +42,5 @@ converterForm.addEventListener('submit', async (e) => {
     const roundedResult = parseFloat(data.result).toFixed(2); //Rounded to 2 decimal places
     resultDiv.innerText = `Result: ${roundedResult}`;
   } else {
-    resultDiv.innerText = 'Error: Invalid conversion. Try again!';
+    resultDiv.innerText = 'Invalid conversion. Try again!';
   }});

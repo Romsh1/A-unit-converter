@@ -1,4 +1,4 @@
-// Conversion logic (Model)
+//Conversion logic (Model)
 const conversions = {
     length: {
       km: { miles: 0.621371, meters: 1000 },
